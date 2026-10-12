@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ==============================
+         CHANGE WEBSITE TITLE HERE
+    =============================== -->
+    <title>KIET DEMMED TO BE UNIVERSITY</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            color: #222;
+        }
+
+        /* ==============================
+           HEADER
+        =============================== */
+
+        header {
+            background: #063970;
+            color: white;
+            padding: 12px 50px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* KIET LOGO */
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-area img {
+            width: 65px;
+            height: 65px;
+            object-fit: contain;
+            background: white;
+            border-radius: 5px;
+            padding: 3px;
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: #ffd700;
+        }
+
+        /* ==============================
+           HERO SECTION
+        =============================== */
+
+        .hero {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+
+            /* =========================================
+               CHANGE YOUR UNIVERSITY IMAGE HERE
+
+               Put your image inside:
+               images/university.jpg
+            ========================================= */
+
+            background:
+                linear-gradient(
+                    rgba(0, 40, 80, 0.70),
+                    rgba(0, 40, 80, 0.70)
+                ),
+                url("images/university.jpg");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background: #e63946;
+            color: white;
+            padding: 14px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: #c1121f;
+        }
+
+        /* ==============================
+           GENERAL SECTION
+        =============================== */
+
+        section {
+            padding: 70px 10%;
+        }
+
+        .title {
+            text-align: center;
+            color: #063970;
+            font-size: 35px;
+            margin-bottom: 40px;
+        }
+
+        /* ==============================
+           ABOUT
+        =============================== */
+
+        .about {
+            background: white;
+        }
+
+        .about-content {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-content img {
+            width: 50%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .about-text {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        /* ==============================
+           PROGRAMS
+        =============================== */
+
+        .programs {
+            background: #f5f7fa;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card h3 {
+            color: #063970;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            line-height: 1.6;
+        }
+
+        /* ==============================
+           STATISTICS
+        =============================== */
+
+        .stats {
+            background: #063970;
+            color: white;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            text-align: center;
+            gap: 20px;
+        }
+
+        .stat h2 {
+            font-size: 40px;
+            color: #ffd700;
+        }
+
+        .stat p {
+            margin-top: 10px;
+        }
+
+        /* ==============================
+           CUSTOM SPECIFICATION SECTION
+        =============================== */
+
+        .specifications {
+            background: white;
+        }
+
+        .specification-box {
+            border: 2px dashed #063970;
+            padding: 40px;
+            text-align: center;
+            border-radius: 10px;
+            min-height: 200px;
+        }
+
+        .specification-box h3 {
+            color: #063970;
+            margin-bottom: 20px;
+        }
+
+        .specification-box p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* ==============================
+           CONTACT
+        =============================== */
+
+        .contact {
+            background: white;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .contact-form textarea {
+            height: 150px;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 15px;
+            background: #e63946;
+            border: none;
+            color: white;
+            font-size: 17px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .contact-form button:hover {
+            background: #c1121f;
+        }
+
+        /* ==============================
+           FOOTER
+        =============================== */
+
+        footer {
+            background: #031d3a;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        /* ==============================
+           MOBILE RESPONSIVE
+        =============================== */
+
+        @media(max-width: 800px) {
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-content img {
+                width: 100%;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ==================================================
+         HEADER
+    =================================================== -->
+
+    <header>
+
+        <nav>
+
+            <div class="logo-area">
+
+                <!-- ========================================
+                     PUT YOUR KIET LOGO HERE
+
+                     Save your logo as:
+                     images/kiet-logo.png
+                ========================================= -->
+
+                <img src="images/kiet-logo.png" alt="KIET Logo">
+
+                <div class="logo-text">
+                    KIET GROUP OF INSTITUTIONS
+                </div>
+
+            </div>
+
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#programs">Programs</a></li>
+                <li><a href="#specifications">Specifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ==================================================
+         HERO SECTION
+    =================================================== -->
+
+    <section class="hero" id="home">
+
+        <div>
+
+            <!-- ========================================
+                 CHANGE MAIN HEADING HERE
+            ========================================= -->
+
+            <h1>Welcome to KIET</h1>
+
+            <!-- ========================================
+                 CHANGE TAGLINE HERE
+            ========================================= -->
+
+            <p>
+                Empowering Students Through Education,
+                Innovation and Excellence
+            </p>
+
+            <a href="#programs" class="btn">
+                Explore Programs
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         ABOUT SECTION
+    =================================================== -->
+
+    <section class="about" id="about">
+
+        <h2 class="title">
+            About KIET
+        </h2>
+
+        <div class="about-content">
+
+            <!-- ========================================
+                 PUT YOUR UNIVERSITY PHOTO HERE
+
+                 Save it as:
+                 images/university.jpg
+            ========================================= -->
+
+            <img
+                src="images/university.jpg"
+                alt="KIET Campus"
+            >
+
+            <div class="about-text">
+
+                <!-- ========================================
+                     ADD YOUR OWN UNIVERSITY DESCRIPTION
+                ========================================= -->
+
+                <p>
+                    KIET Group of Institutions is an educational
+                    institution focused on academic excellence,
+                    innovation, research and professional development.
+                </p>
+
+                <br>
+
+                <p>
+                    The institution provides students with opportunities
+                    to develop technical skills, leadership abilities
+                    and industry-oriented knowledge.
+                </p>
+
+                <!-- ========================================
+                     ADD MORE INFORMATION HERE
+
+                     Example:
+                     Established year
+                     Vision
+                     Mission
+                     Campus information
+                     Achievements
+                ========================================= -->
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         PROGRAMS SECTION
+    =================================================== -->
+
+    <section class="programs" id="programs">
+
+        <h2 class="title">
+            Our Programs
+        </h2>
+
+        <div class="cards">
+
+            <!-- PROGRAM 1 -->
+
+            <div class="card">
+
+                <h3>
+                    Computer Science
+                </h3>
+
+                <p>
+                    Programming, software development,
+                    AI, machine learning and data science.
+                </p>
+
+            </div>
+
+
+            <!-- PROGRAM 2 -->
+
+            <div class="card">
+
+                <h3>
+                    Engineering
+                </h3>
+
+                <p>
+                    Build strong technical knowledge
+                    through practical engineering education.
+                </p>
+
+            </div>
+
+
+            <!-- PROGRAM 3 -->
+
+            <div class="card">
+
+                <h3>
+                    Management
+                </h3>
+
+                <p>
+                    Develop leadership, business,
+                    communication and management skills.
+                </p>
+
+            </div>
+
+
+            <!-- PROGRAM 4 -->
+
+            <div class="card">
+
+                <h3>
+                    Artificial Intelligence
+                </h3>
+
+                <p>
+                    Learn modern AI technologies,
+                    machine learning and intelligent systems.
+                </p>
+
+            </div>
+
+
+            <!-- PROGRAM 5 -->
+
+            <div class="card">
+
+                <h3>
+                    Data Science
+                </h3>
+
+                <p>
+                    Learn data analysis, statistics,
+                    machine learning and visualization.
+                </p>
+
+            </div>
+
+
+            <!-- PROGRAM 6 -->
+
+            <div class="card">
+
+                <h3>
+                    Research & Innovation
+                </h3>
+
+                <p>
+                    Work on innovative projects and
+                    real-world technological problems.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         STATISTICS
+         
+         IMPORTANT:
+         Replace these sample values with your
+         actual university information.
+    =================================================== -->
+
+    <section class="stats">
+
+        <div class="stats-container">
+
+            <div class="stat">
+
+                <!-- CHANGE VALUE -->
+                <h2>20+</h2>
+
+                <!-- CHANGE TITLE -->
+                <p>Years of Excellence</p>
+
+            </div>
+
+
+            <div class="stat">
+
+                <!-- CHANGE VALUE -->
+                <h2>10K+</h2>
+
+                <!-- CHANGE TITLE -->
+                <p>Students</p>
+
+            </div>
+
+
+            <div class="stat">
+
+                <!-- CHANGE VALUE -->
+                <h2>500+</h2>
+
+                <!-- CHANGE TITLE -->
+                <p>Faculty</p>
+
+            </div>
+
+
+            <div class="stat">
+
+                <!-- CHANGE VALUE -->
+                <h2>100+</h2>
+
+                <!-- CHANGE TITLE -->
+                <p>Recruiters</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         YOUR CUSTOM SPECIFICATIONS
+         
+         ADD WHATEVER YOU WANT HERE:
+         
+         - Vision
+         - Mission
+         - Placements
+         - Facilities
+         - Clubs
+         - Achievements
+         - Campus Life
+         - Hostel
+         - Library
+         - Labs
+         - etc.
+    =================================================== -->
+
+    <section class="specifications" id="specifications">
+
+        <h2 class="title">
+            University Specifications
+        </h2>
+
+        <div class="specification-box">
+
+            <!-- ========================================
+                 START ADDING YOUR INFORMATION HERE
+            ========================================= -->
+
+            <h3>
+                YOUR CONTENT HERE
+            </h3>
+
+            <p>
+                This is a blank space for your own
+                university specifications.
+
+                Replace this text with your information.
+            </p>
+
+            <br>
+
+            <!-- ========================================
+                 ADD MORE CONTENT BELOW
+            ========================================= -->
+
+            <p>
+                <!-- YOUR INFORMATION -->
+            </p>
+
+            <p>
+                <!-- YOUR INFORMATION -->
+            </p>
+
+            <p>
+                <!-- YOUR INFORMATION -->
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         CONTACT SECTION
+    =================================================== -->
+
+    <section class="contact" id="contact">
+
+        <h2 class="title">
+            Contact Us
+        </h2>
+
+        <!-- ============================================
+             CHANGE CONTACT INFORMATION HERE
+        ============================================= -->
+
+        <div style="
+            text-align:center;
+            margin-bottom:30px;
+            line-height:1.8;
+        ">
+
+            <p>
+                📍 YOUR UNIVERSITY ADDRESS
+            </p>
+
+            <p>
+                📞 YOUR PHONE NUMBER
+            </p>
+
+            <p>
+                ✉️ YOUR EMAIL ADDRESS
+            </p>
+
+        </div>
+
+
+        <form class="contact-form">
+
+            <input
+                type="text"
+                placeholder="Enter your name"
+                required
+            >
+
+            <input
+                type="email"
+                placeholder="Enter your email"
+                required
+            >
+
+            <input
+                type="text"
+                placeholder="Enter subject"
+                required
+            >
+
+            <textarea
+                placeholder="Write your message"
+                required
+            ></textarea>
+
+            <button type="submit">
+                Send Message
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- ==================================================
+         FOOTER
+    =================================================== -->
+
+    <footer>
+
+        <!-- ========================================
+             CHANGE FOOTER INFORMATION HERE
+        ========================================= -->
+
+        <p>
+            © 2026 KIET Group of Institutions.
+            All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+</body>
+</html>

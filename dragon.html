@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Dragon Cursor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #e0e0e0;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            cursor: crosshair;
+        }
+        #screen {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <svg id="screen" xmlns="http://w3.org" xmlns:xlink="http://w3.org">
+        <defs>
+            <g id="head">
+                <path d="M0,0 C10,-15 30,-15 35,-5 C40,5 30,15 0,0" fill="#000" />
+                <path d="M15,-8 C20,-20 12,-25 10,-22 C8,-15 12,-10 12,-10" fill="#000" /> 
+                <circle cx="22" cy="-3" r="2" fill="#fff" />
+            </g>
+            <g id="bone">
+                <path d="M-10,0 L10,0 M0,-5 L0,5" stroke="#777" stroke-width="2" stroke-linecap="round"/>
+                <path d="M-5,-15 C5,-5 5,5 -5,15" fill="none" stroke="#333" stroke-width="1.5"/>
+            </g>
+            <g id="wing">
+                <path d="M0,0 C20,-40 60,-60 90,-40 C70,-10 30,-5 0,0" fill="none" stroke="#222" stroke-width="2"/>
+                <path d="M30,-25 C50,-50 80,-45 90,-40" fill="none" stroke="#555" stroke-width="1"/>
+                <path d="M0,0 C30,10 70,0 90,-40" fill="none" stroke="#444" stroke-width="1"/>
+            </g>
+        </defs>
+    </svg>
+
+    <script>
+        "use strict";
+
+        const screen = document.getElementById("screen");
+        const xmlns = "http://w3.org";
+        const xlinkns = "http://w3.org";
+
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+
+        const pointer = { x: width / 2, y: height / 2 };
+
+        window.addEventListener("pointermove", (e) => {
+            pointer.x = e.clientX;
+            pointer.y = e.clientY;
+        }, false);
+
+        window.addEventListener("resize", () => {
+            width = window.innerWidth;
+            height = window.innerHeight;
+        }, false);
+
+        class Segment {
+            constructor(x, y, size, target, isHead = false, isWing = false) {
+                this.x = x;
+                this.y = y;
+                this.size = size;
+                this.target = target;
+                this.angle = 0;
+
+                this.element = document.createElementNS(xmlns, "use");
+                
+                if (isHead) {
+                    this.element.setAttributeNS(xlinkns, "href", "#head");
+                } else if (isWing) {
+                    this.element.setAttributeNS(xlinkns, "href", "#wing");
+                } else {
+                    this.element.setAttributeNS(xlinkns, "href", "#bone");
+                }
+                
+                screen.appendChild(this.element);
+            }
+
+            update() {
+                const dx = this.target.x - this.x;
+                const dy = this.target.y - this.y;
+                this.angle = Math.atan2(dy, dx);
+                
+                this.x = this.target.x - Math.cos(this.angle) * this.size;
+                this.y = this.target.y - Math.sin(this.angle) * this.size;
+            }
+
+            render() {
+                const degrees = (this.angle * 180) / Math.PI;
+                this.element.setAttributeNS(null, "transform", `translate(${this.x}, ${this.y}) rotate(${degrees})`);
+            }
+        }
+
+        const segments = [];
+        const numSegments = 35; 
+        const segmentLength = 16; 
+
+        let currentTarget = pointer;
+
+        for (let i = 0; i < numSegments; i++) {
+            const isHead = (i === 0);
+            const isWing = (i === 5 || i === 6); 
+            
+            const seg = new Segment(pointer.x, pointer.y, segmentLength, currentTarget, isHead, isWing);
+            segments.push(seg);
+            currentTarget = seg; 
+        }
+
+        function animate() {
+            for (let i = 0; i < segments.length; i++) {
+                segments[i].update();
+                segments[i].render();
+            }
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
